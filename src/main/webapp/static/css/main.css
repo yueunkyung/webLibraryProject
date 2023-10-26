@@ -1,9 +1,22 @@
 @charset "utf-8";
 * { box-sizing: border-box; }
-input {outline: none; border: none;}
+input {border: none;}
 html, body {
     height: 100%;
 }
+.container {
+    width: 1260px;
+    margin: 0 auto;
+    padding: 80px 10px;
+    background-color: #fff;
+}
+.bg_dark {
+    background: #444;
+    /* padding: 50px 0; */
+    height: 100%;
+}
+
+/* login */
 .login_wrapper {
     position: relative;
     height: 100%;
@@ -77,15 +90,15 @@ font-weight: bold;
 .input_set input {
     width:  calc(100% - 130px);
     padding: 5PX 10PX;
+    border-radius: 5px;
 }
 .login_unit .btn_wrap{
-    text-align: center;
+    text-align: right;
     margin-top: 40px;
 
 }
 .login_unit .btn_wrap button {
     padding: 8px 15px;
-    cursor: pointer;
     border-radius: 5px;
     border: 1px solid #777;
     font-weight: bold;
@@ -93,4 +106,77 @@ font-weight: bold;
 
 .login_unit .btn_wrap button + button {
     margin-left: 10px;
+}
+
+/* booksearch */
+.search_box {
+    border: 3px solid #353535;
+    padding: 0 50px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.search_box  .search_set {
+    display: flex;
+    align-items: center;
+}
+.search_box  .search_set + .search_set {
+    margin-left: 15px;
+}
+.search_box span {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+}
+.search_box input {
+    background-color: #f8f8f8;
+    padding: 0 10px;
+    width: 340px;
+    height: 36px;
+    margin: 0 7px;
+}
+.search_box select {
+    background-color: #f8f8f8;
+    padding: 0 10px;
+    width: 150px;
+    height: 36px;
+    margin: 0 7px;
+    border: none;
+}
+.search_box .btn_search {
+    padding: 0 10px;
+    height: 36px;
+    color: #fff;
+    min-width: 68px;
+    background-color: #353535;
+}
+.total_count {
+    margin: 20px 15px 5px;
+    font-size: 12px;
+}
+.total_count span {
+    color: #0093ff;
+    font-weight: 700;
+}
+.list_wrap {
+    margin: 0 15px;
+}
+.list_wrap table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+.list_wrap table th {
+    padding: 10px 15px;
+    border-bottom: 2px solid #777;
+    color: #999;
+}
+.list_wrap table td {
+    text-align: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ebebeb;
+}
+.list_wrap table td.txt_left {
+    text-align: left;
 }

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<title>도서 검색</title>
+	<meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/common.css">
+	<link rel="stylesheet" href="../css/main.css">
+    <script src="../jslib/jquery-3.7.1.min.js"></script>
+    <script src="/src/main/webapp/static/jslib/jquery-3.7.1.min.js"></script>
+    <script>
+$(function(){
+console.log("???");
+    $("#gnb_wrap>li").on("mouseover focusin",function(){
+
+        $(this).children().stop().fadeIn(500);
+
+        $(this).children("a").addClass("on");
+
+    });
+
+    $("#gnb_wrap>li").on("mouseout focusout",function(){
+
+        $(this).children("div").stop().fadeOut(500);
+
+        $(this).children("a").removeClass("on");
+
+    });
+
+    
+}); //End
+
+    </script>
+</head>
+
+<body class="bg_dark">
+	<header id="hd_wrap">
+		<div class="header_top">
+			<ul class="util_wrap">
+				<li><a href="#">로그인</a></li>
+				<li><a href="#">회원가입</a></li>
+			</ul>
+		</div>
+		<h1 class="logo"><a href="/">LALA LIBRARY</a></h1>
+		<div class="header_gnb">
+			<nav class="dis_center">
+				<ul id="gnb_wrap">
+					<li>
+						<a href="#">도서 통합 검색</a>
+						<div class="gnb_2depth">
+							<div class="dis_center">
+								<ul class="l_book">
+									<li><a href="#">도서 검색</a></li>
+									<li><a href="#">도서 주문</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<a href="#">분실물 보관</a>
+						<div class="gnb_2depth">
+							<div class="dis_center">
+								<ul class="l_lost">
+									<li><a href="#">분실물 찾기</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="container booklist_container">
+		<div class="search_box">
+			<div class="search_set">
+				<span>도서관 선택</span>
+				<select name="library_id">
+					<option value="">전체</option>
+					<option value="lali_001">라라 도서관</option>
+					<option value="lali_002">서울 도서관</option>
+					<option value="lali_003">광명시 도서관</option>
+					<option value="lali_004">부천시 도서관</option>
+				</select>
+			</div>
+			<div class="search_set">
+				<span>도서명</span>
+				<input type="text" placeholder="도서 이름을 입력해주세요." name="book_name" />
+			</div>
+			<button class="btn_search">조회</button>
+		</div>
+		<div class="total_count">
+			총 <span>316</span>건의 도서가 있습니다.
+		</div>
+		<div class="list_wrap">
+			<table>
+				<colgroup>
+					<col width="8%">
+					<col width="57%">
+					<col width="20%">
+					<col width="15%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>NO</th>
+						<th>도서명</th>
+						<th>도서 타입</th>
+						<th>대여상태</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td class="txt_left">불편한 편의점</td>
+						<td>800</td>
+						<td>Y</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td class="txt_left">대통령 비서실장 791일</td>
+						<td>300</td>
+						<td>Y</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td class="txt_left">불편한 편의점</td>
+						<td>800</td>
+						<td>Y</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td class="txt_left">대통령 비서실장 791일</td>
+						<td>300</td>
+						<td>Y</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td class="txt_left">불편한 편의점</td>
+						<td>800</td>
+						<td>Y</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td class="txt_left">대통령 비서실장 791일</td>
+						<td>300</td>
+						<td>Y</td>
+					</tr>
+					<tr>
+						<td>7</td>
+						<td class="txt_left">불편한 편의점</td>
+						<td>800</td>
+						<td>Y</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td class="txt_left">대통령 비서실장 791일</td>
+						<td>300</td>
+						<td>Y</td>
+					</tr>
+					<tr>
+						<td>9</td>
+						<td class="txt_left">불편한 편의점</td>
+						<td>800</td>
+						<td>Y</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td class="txt_left">대통령 비서실장 791일</td>
+						<td>300</td>
+						<td>Y</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>

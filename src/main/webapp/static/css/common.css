@@ -4,7 +4,154 @@
 @import "normalize.css";
 
 /* setting common css */
-body {font-family: 'Nanum Gothic', sans-serif; font-size:14px; color:#222;}
-li {list-style:none;}
-a {color:#222; text-decoration:none;}
-img{ vertical-align:top;}
+body {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 14px;
+	color: #222;
+}
+ul, li { margin: 0; padding: 0;}
+li {
+	list-style: none;
+}
+a {
+	color: #222;
+	text-decoration: none;
+}
+img {
+	vertical-align: top;
+}
+button {
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 0;
+	overflow: visible;
+	cursor: pointer
+}
+
+/* header */
+#hd_wrap {
+	position: relative;
+	width: 100%;
+	background-color: #444;
+    margin-bottom: 20px;
+	z-index: 9899;
+}
+.header_top {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 10px 0px;
+}
+.header_top .util_wrap {
+    display: flex;
+    justify-content: flex-end;
+}
+.header_top .util_wrap li:first-child::after {
+    content: '|';
+    padding: 0 5px;
+    color: #fff;
+}
+.header_top .util_wrap a {
+    color: #fff;
+}
+.logo {
+	margin-top: 15px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.logo > a {
+	display: inline-block;
+    color: #fff;
+	/* text-indent: -9999px;
+	width: 205px;
+	line-height: 46px;
+	height: 46px;
+	background-image: url(../img/common/logo_daelim_white.png);
+	background-repeat: no-repeat;
+	background-position: center center; */
+}
+
+/* gnb */
+.header_gnb {
+	position: relative;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #c7d7f2;
+}
+.dis_center {
+    width: 1260px;
+    margin: 0 auto;
+}
+#gnb_wrap {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+#gnb_wrap > li {
+    display:table-cell;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 40px;
+}
+#gnb_wrap>li>a {
+	position: relative;
+    display: inline-block;
+	color: #fff;
+	font-size: 18px;
+	padding: 5px 30px;
+}
+#gnb_wrap>li>a:after {
+	content: '';
+	position: absolute;
+	left: 0px;
+	bottom: 0;
+	width: 0;
+	height: 5px;
+	border-radius: 5px;
+	background-color: #fff;
+	opacity: 0;
+	transition: 0.5s;
+}
+#gnb_wrap>li>a:hover:after,
+#gnb_wrap>li>a:focus:after,
+#gnb_wrap>li>a.on:after {
+	width: 100%;
+	opacity: 1;
+}
+.gnb_2depth {
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	width: 100%;
+	background: oldlace;
+	background: #fff8eb;
+    background: #fff;
+    border-bottom: 1px solid #eaeaea;
+	display: none;
+}
+.gnb_2depth>div>ul::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.gnb_2depth>div>ul>li {
+	float: left;
+}
+.gnb_2depth>div>ul>li:last-child {
+	margin-right: 0px;
+}
+.gnb_2depth>div>ul>li>a {
+	padding: 5px 10px;
+	font-size: 16px;
+	color: #000;
+}
+.gnb_2depth>div>ul>li>a:hover,
+.gnb_2depth>div>ul>li>a:focus {
+	color: rgb(52, 130, 201);
+	color: #0093ff;
+}
+.l_book {
+    margin-left: 250px;
+}
+.l_lost {
+    margin-left: 900px;
+}
