@@ -1,3 +1,8 @@
+window.onload=function(){
+	let navItems = document.querySelectorAll("#gnb_wrap>li");
+	
+	console.log("navItems", navItems);
+}
 $(function(){
 console.log("???");
     $("#gnb_wrap>li").on("mouseover focusin",function(){
