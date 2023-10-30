@@ -31,26 +31,6 @@ public class LostAndFoundDAO {
 		} else {
 			sql = "select * from lost_and_found";
 		}
-		/*
-		switch (target) {
-			case "all": {
-				sql = "select * from lost_and_found";
-				break;
-			}
-			case "property_name": {
-				sql = "select * from lost_and_found where property_name LIKE '%" + sqlParam + "%'";
-				break;
-			}
-			case "library_id": {
-				sql = "select * from lost_and_found where library_id ='" + sqlParam + "'";
-				break;
-			}
-			case "library_id": {
-				sql = "select * from lost_and_found where library_id ='" + sqlParam + "' and property_name LIKE '%" + sqlParam + "%'";
-				break;
-			}
-		}
-		*/
 		conn = DBUtil.getConnection();
 
 		try {
