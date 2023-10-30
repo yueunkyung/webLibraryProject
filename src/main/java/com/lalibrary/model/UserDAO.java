@@ -80,6 +80,28 @@ public class UserDAO {
 		return count;		
 	}
 	
+	//로그인
+	public UserVO signinCheck(String id, int password) {
+		UserVO user = null;
+		String sql = "select *"
+					+ " from users where user_id = ? and password = ?";
+		conn = DBUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, id);
+			pst.setInt(2, password);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				user = makeUserList(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisConnection(conn, st, rs);
+		}
+		return user;
+	}
+	
 	//회원-UserVO
 	private UserVO makeUserList(ResultSet rs) throws SQLException {
 		UserVO user = new UserVO();

@@ -18,10 +18,20 @@ public class BookDAO {
 	PreparedStatement pst;
 	ResultSet rs;
 
-	//통합도서검색-도서 이름 검색
-	public List<BookVO> selectByBookTitle(String title){
+	//통합도서검색
+	public List<BookVO> selectByBook(String libId, String searchName){
 		List<BookVO> booklist = new ArrayList<>();
-		String sql = "SELECT * FROM BOOKS WHERE BOOK_NAME LIKE '%" + title + "%'";
+		String sql = "select * from books join lalibrary using(library_id)";
+		if(libId != null && searchName!= null) {
+			sql = "select * from books join lalibrary using(library_id)"
+					+ " where library_id = '"+libId+"'" + " and book_name like '%" + searchName + "%'";	
+		} else if(libId != null) {
+			sql = "select * from books join lalibrary using(library_id)"
+					+ " where library_id = '"+libId+"'";
+		} else if(searchName != null) {
+			sql = "select * from books join lalibrary using(library_id)"
+					+ " WHERE book_name like '%" + searchName + "%'";
+		}
 		conn = DBUtil.getConnection();
 		try {
 			st = conn.createStatement();
@@ -38,6 +48,31 @@ public class BookDAO {
 		return booklist;
 	};
 
+	//인기 도서 조회
+	public List<BookVO> selectPopularBook(int rank){
+		List<BookVO> bestlist = new ArrayList<>();
+		String sql = "select *"
+				+ " from ( select * from books"
+				+ "       order by BORROW_COUNT desc nulls last)"
+				+ " where rownum <=" + rank;
+		conn = DBUtil.getConnection();
+
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {		
+				BookVO bestbook = makeBookList(rs);//reset에서 읽어서 VO만들기
+				bestlist.add(bestbook);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisConnection(conn, st, rs);
+		}
+		
+		return bestlist;
+	}
+	
 	//도서 대여
 	public int insertBorrowBook(BookVO borrowInfo) {
 		//procedure - 도서 대여 목록 추가 처리 
@@ -82,98 +117,8 @@ public class BookDAO {
 		return count;		
 	}
 	
-	//도서 전체 조회
-	public List<BookVO> selectBookAll(){
-		List<BookVO> bookAll = new ArrayList<>();
-		String sql = "select * from books";
-		conn = DBUtil.getConnection();
-
-		try {
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while(rs.next()) {
-				BookVO book = makeBookList(rs);//reset에서 읽어서 VO만들기
-				System.out.println(book);
-				bookAll.add(book);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisConnection(conn, st, rs);
-		}
-		
-		return bookAll;
-	}
 	
-	//도서관 전체 조회
-	public List<LibraryVO> selectLibraryAll(){
-		List<LibraryVO> libraryAll = new ArrayList<>();
-		String sql = "select * from lalibrary";
-		conn = DBUtil.getConnection();
 
-		try {
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while(rs.next()) {
-				LibraryVO library = makeLalibraryList(rs);//reset에서 읽어서 VO만들기
-				libraryAll.add(library);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisConnection(conn, st, rs);
-		}
-		
-		return libraryAll;
-	}
-	
-	//도서관별 도서 전체 조회
-	public List<BookVO> selectEachLibraryBook(String libId){
-		List<BookVO> book = new ArrayList<>();
-		String sql = "select * from books where library_id = '"+libId+"'";
-		conn = DBUtil.getConnection();
-
-		try {
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while(rs.next()) {
-				BookVO libraryBookAll = makeBookList(rs);//reset에서 읽어서 VO만들기
-				book.add(libraryBookAll);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisConnection(conn, st, rs);
-		}
-		
-		return book;
-	}
-
-	//인기 도서 조회
-	public List<BookVO> selectPopularBook(int rank){
-		List<BookVO> bestlist = new ArrayList<>();
-		String sql = "select *"
-				+ " from ( select * from books"
-				+ "       order by BORROW_COUNT desc nulls last)"
-				+ " where rownum <=" + rank;
-		conn = DBUtil.getConnection();
-
-		try {
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while(rs.next()) {		
-				BookVO bestbook = makeBookList(rs);//reset에서 읽어서 VO만들기
-				bestlist.add(bestbook);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisConnection(conn, st, rs);
-		}
-		
-		return bestlist;
-	}
-	
 
 	
 	//도서-BookVO
@@ -187,7 +132,10 @@ public class BookDAO {
 		book.setPrice(rs.getInt(6));
 		book.setBuy_date(rs.getString(7));
 		book.setBorrow_status (rs.getString(8));
-		//book.setBorrow_count (rs.getInt(9));
+		book.setBorrow_count (rs.getInt(9));
+		book.setLibrary_name (rs.getString(10));
+		book.setLoc (rs.getString(11));
+		book.setMember_count (rs.getInt(12));
 		
 		return book;
 	}

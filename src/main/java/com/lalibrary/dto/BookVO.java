@@ -20,8 +20,10 @@ public class BookVO {
 	private String buy_date;  //구입일	
 	private String borrow_status;  //대여 상태
 	private int borrow_count;  //빌린 횟수
-	//private String book_id;  //도서 아이디
 	private String user_id;  //사용자 아이디
+	private String library_name; //도서관 이름
+	private String loc; //지역
+	private int member_count; //회원수
 	
 	
 	//도서 주문

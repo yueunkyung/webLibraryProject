@@ -17,4 +17,8 @@ public class UserService {
 		return dao.insertSignUp(memberInfo);
 	}
 
+	//로그인
+	public UserVO signinCheck(String id, int password) {
+		return dao.signinCheck(id, password);
+	}
 }

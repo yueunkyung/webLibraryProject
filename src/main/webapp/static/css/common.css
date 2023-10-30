@@ -3,79 +3,89 @@
 @import "font.css";
 @import "normalize.css";
 
-/* setting common css */
-body {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size: 14px;
-	color: #222;
+/* reset common css */
+* { box-sizing: border-box; }
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button {margin:0;padding:0}
+fieldset,img {border:0 none}
+dl,ul,ol,menu,li {list-style:none}
+blockquote, q {quotes:none}
+blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
+input,select,textarea,button {vertical-align:middle}
+button {border:0 none;background-color:transparent;cursor:pointer}
+body {background:#fff}
+body,th,td,input,select,textarea,button {font-size:14px;line-height:1.5;font-family:'Nanum Gothic','돋움',dotum,sans-serif;color:#222}
+a {color:#222;text-decoration:none}
+/*a:active, a:hover {text-decoration:underline}*/
+address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
+hr{border:.5px solid #e8e8e8;}
+
+table {border-collapse:collapse;border-spacing:0}
+button {border:0;outline:0}
+article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {display:block}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{-webkit-appearance:none;}
+input[type=number]{-moz-appearance:textfield;}
+textarea{resize:none;}
+input {border: none;}
+.bg_dark {
+    background: #444;
+    /* padding: 50px 0; */
+    height: 100%;
 }
-ul, li { margin: 0; padding: 0;}
-li {
-	list-style: none;
+html, body {
+	min-height: 100%;
 }
-a {
-	color: #222;
-	text-decoration: none;
-}
-img {
-	vertical-align: top;
-}
-button {
-	border: none;
-	box-shadow: none;
-	border-radius: 0;
-	padding: 0;
-	overflow: visible;
-	cursor: pointer
+#wrap {
+	min-height: 100vh;
+	padding-bottom: 100px;
 }
 
 /* header */
-#hd_wrap {
+.hd_container {
 	position: relative;
 	width: 100%;
 	background-color: #444;
-    margin-bottom: 20px;
 	z-index: 9899;
 }
 .header_top {
-    display: flex;
-    justify-content: flex-end;
     padding: 20px 10px 0px;
+}
+.header_top .welcome_msg {
+	padding-bottom: 5px;
+	text-align: right;
+	color: #fff;
 }
 .header_top .util_wrap {
     display: flex;
     justify-content: flex-end;
 }
-.header_top .util_wrap li:first-child::after {
+.header_top .util_wrap li {
+	color: #fff;
+}
+.header_top .util_wrap li+li:before {
     content: '|';
-    padding: 0 5px;
+    padding: 0 6px;
     color: #fff;
 }
 .header_top .util_wrap a {
     color: #fff;
 }
 .logo {
-	margin-top: 15px;
-	margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 35px;
 	text-align: center;
 }
 .logo > a {
 	display: inline-block;
     color: #fff;
-	/* text-indent: -9999px;
-	width: 205px;
-	line-height: 46px;
-	height: 46px;
-	background-image: url(../img/common/logo_daelim_white.png);
-	background-repeat: no-repeat;
-	background-position: center center; */
 }
 
 /* gnb */
 .header_gnb {
 	position: relative;
 	border-top: 1px solid #fff;
-	border-bottom: 1px solid #c7d7f2;
+	border-bottom: 1px solid #838383;
 }
 .dis_center {
     width: 1260px;
@@ -97,7 +107,7 @@ button {
     display: inline-block;
 	color: #fff;
 	font-size: 18px;
-	padding: 5px 30px;
+	padding: 5px 20px;
 }
 #gnb_wrap>li>a:after {
 	content: '';
@@ -107,7 +117,7 @@ button {
 	width: 0;
 	height: 5px;
 	border-radius: 5px;
-	background-color: #fff;
+	background-color: #ff9b00;
 	opacity: 0;
 	transition: 0.5s;
 }
@@ -122,9 +132,7 @@ button {
 	top: 50px;
 	left: 0px;
 	width: 100%;
-	background: oldlace;
-	background: #fff8eb;
-    background: #fff;
+	background: #fff;
     border-bottom: 1px solid #eaeaea;
 	display: none;
 }
@@ -146,8 +154,7 @@ button {
 }
 .gnb_2depth>div>ul>li>a:hover,
 .gnb_2depth>div>ul>li>a:focus {
-	color: rgb(52, 130, 201);
-	color: #0093ff;
+	color: #ff8400;
 }
 .l_book {
     margin-left: 250px;
@@ -155,3 +162,149 @@ button {
 .l_lost {
     margin-left: 900px;
 }
+
+/* error */
+.error_container {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items:center;
+}
+.error_container .img_wrap {
+	width: 400px;
+}
+.error_container .img_wrap img{
+	display: block;
+	width: 100%;
+}
+.error_message .tit {
+	font-size: 26px;
+	line-height: 1;
+	margin-bottom: 8px;
+	text-align: center;
+}
+.error_message .txt {
+	font-size: 16px;
+}
+.error_message .btn_wrap {
+	text-align: right;
+	margin: 10px 0 130px;
+}
+.error_message .btn_prev {
+	text-align: right;
+	color: #f30;
+	font-weight: 700;
+}
+
+
+/*pagination*/
+.pagination {
+	display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.pagingWrap:after,
+.pageLeft:after,
+.pageRight:after{
+    content: ""; display: block; clear: both;
+}
+.pagination button + button{
+    margin-left: 6px;
+}
+.pagination button:hover,
+.pagination button:active{
+    background-color: #f8f8f8;
+}
+.pagination button:disabled:hover,
+.pagination button:disabled:active{
+    background-color: #ffffff;
+}
+.pageLeft{
+    display: inline-block;
+}
+.pageLeft button{
+    float: left;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #e8e8e8;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+.pageLeft .btnFirst{
+    background-image: url(../images/btnFirst.png);
+    background-size: 13px 12px;
+}
+.pageLeft .btnFirst:disabled{
+    background-image: url(../images/btnFirstDisabled.png);
+    background-size: 13px 12px;
+}
+.pageLeft .btnPrev{
+    background-image: url(../images/btnPrev.png);
+    background-size: 7px 12px;
+}
+.pageLeft .btnPrev:disabled{
+    background-image: url(../images/btnPrevDisabled.png);
+    background-size: 7px 12px;
+}
+.pageRight{
+    display: inline-block;
+}
+.pageRight button{
+    float: left;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #e8e8e8;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+.pageRight .btnNext{
+    background-image: url(../images/btnNext.png);
+    background-size: 7px 12px;
+}
+.pageRight .btnNext:disabled{
+    background-image: url(../images/btnNextDisabled.png);
+    background-size: 7px 12px;
+}
+.pageRight .btnLast{
+    background-image: url(../images/btnLast.png);
+    background-size: 13px 12px;
+}
+.pageRight .btnLast:disabled{
+    background-image: url(../images/btnLastDisabled.png);
+    background-size: 13px 12px;
+}
+.pagingWrap{
+    display: inline-block;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.pagingWrap li{
+    float: left;
+    width: 36px;
+    height: 36px;
+}
+.pagingWrap li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 36px;
+    font-size: 14px;
+    border: 1px solid #e8e8e8;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #ffffff;
+}
+.pagingWrap li.on a,
+.pagingWrap li a:hover,
+.pagingWrap li a:active{
+    font-weight: 800;
+    background-color: #f8f8f8;
+}
+
