@@ -23,9 +23,6 @@ public class BookListServlet extends HttpServlet {
 		String libId = request.getParameter("library_id");
 		String bookTitle = request.getParameter("book_name");
 
-		//System.out.println(libId=="");
-		//System.out.println(bookTitle=="");
-
 		if(libId=="") libId = null;
 		if(bookTitle=="") bookTitle = null;
 		

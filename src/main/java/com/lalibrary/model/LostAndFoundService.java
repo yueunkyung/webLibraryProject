@@ -8,8 +8,8 @@ public class LostAndFoundService {
 	LostAndFoundDAO dao = new LostAndFoundDAO();
 
 	// 분실물 보관센터
-	public List<LostAndFoundVO> selectLostAndFound(String target, String sqlParam) {
-		return dao.selectLostAndFound(target, sqlParam);
+	public List<LostAndFoundVO> selectLostAndFound(LostAndFoundVO lost) {
+		return dao.selectLostAndFound(lost);
 	}
 
 	// 분실물 등록

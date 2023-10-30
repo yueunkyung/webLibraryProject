@@ -2,20 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<title>즐거운 라라 도서관</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="../static/favicon/favicon.ico" type="image/x-icon">
-<link rel="icon" href="../static/favicon/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="../static/css/common.css">
-<link rel="stylesheet" href="../static/css/main.css">
-<script src="../static/js/jslib/jquery-3.7.1.min.js"></script>
-<!-- 
-<script src="static/js/common.js"></script>
--->
+<%@include file="../views/commonImport.jsp" %>
 <script>
 	window.onload = call;
 
@@ -75,63 +62,9 @@
 </head>
 
 <body>
-	<!-- #wrap -->
+	<%-- #wrap --%>
 	<div id="wrap" class="bg_dark">
-		<!-- .hd_container -->
-		<header class="hd_container">
-			<div class="header_top">
-				<c:if test="${userInfo!=null}">
-					<p class="welcome_msg">${userInfo.user_name}님 환영합니다😊</p>
-				</c:if>
-				<ul class="util_wrap">
-					<c:choose>
-						<c:when test="${userInfo==null}">
-							<li><a href="../signinCheck.go">SignIn</a></li>
-							<li><a href="#">회원가입</a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="#">마이페이지</a></li>
-							<li><a href="../auth/signout.go">SignOut</a></li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-			</div>
-			<h1 class="logo">
-				<a href="bookList.go">LALA LIBRARY</a>
-			</h1>
-			<!-- .header_gnb -->
-			<div class="header_gnb">
-				<nav class="dis_center">
-					<!-- #gnb_wrap -->
-					<ul id="gnb_wrap">
-						<li>
-							<a href="#">도서 통합 검색</a>
-							<div class="gnb_2depth">
-								<div class="dis_center">
-									<ul class="l_book">
-										<li><a href="#">도서 검색</a></li>
-										<li><a href="#">도서 주문</a></li>
-									</ul>
-								</div>
-							</div>
-						</li>
-						<li>
-							<a href="#">분실물 보관</a>
-							<div class="gnb_2depth">
-								<div class="dis_center">
-									<ul class="l_lost">
-										<li><a href="#">분실물 찾기</a></li>
-									</ul>
-								</div>
-							</div>
-						</li>
-					</ul>
-					<!-- //#gnb_wrap -->
-				</nav>
-			</div>
-			<!-- //.header_gnb -->
-		</header>
-		<!-- //.hd_container -->
+		<%@include file="../views/header.jsp" %>
 		<section class="booklist_banner dis_center"></section>
 		<!-- .booklist_container -->
 		<section class="booklist_container">
@@ -139,7 +72,7 @@
 				<div class="search_set">
 					<span>도서관 선택</span>
 					<select id="library_id">
-						<option value="">전체</option>
+						<option value="" selected disabled hidden>전체</option>
 						<c:forEach items="${librarylist}" var="library">
 							<option value="${library.library_id}" ${library.library_id.equals(param.library_id)?"selected" : ""}>${library.library_name}</option>
 						</c:forEach>
@@ -203,8 +136,9 @@
 				</table>
 			</div>
 			
+			<%--pageMasterWrap--%>
+			<%-- 
 			<c:if test="${booklist.size() != 0}">
-			<!--pageMasterWrap-->
 			    <div class=pagination>
 			        <div class="pageLeft">
 			            <button class="btnFirst">첫페이지</button>
@@ -229,11 +163,12 @@
 			            <button class="btnLast">마지막페이지</button>
 			        </div>
 			    </div>
-			<!--//pageMasterWrap-->
 			</c:if>
+			--%>
+			<%-- //pageMasterWrap --%>
 		</section>
-		<!-- //.booklist_container -->
+		<%-- //.booklist_container --%>
 	</div>
-	<!-- //#wrap -->
+	<%-- //#wrap --%>
 </body>
 </html>

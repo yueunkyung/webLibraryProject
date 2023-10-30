@@ -11,6 +11,11 @@ public class BookService {
 	public List<BookVO> selectByBook(String libId, String searchName) {
 		return dao.selectByBook(libId, searchName);
 	}
+	
+	//user 대출 도서 조회
+	public List<BookVO> selectByBook(String userId){
+		return dao.selectByBook(userId);
+	}
 
 	// 도서 주문
 	public int insertOrderBook(BookVO book) {

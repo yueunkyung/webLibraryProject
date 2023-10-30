@@ -18,19 +18,39 @@ public class LostAndFoundDAO {
 	ResultSet rs;
 
 	// 분실물 보관센터-분실물 조회
-	public List<LostAndFoundVO> selectLostAndFound(String target, String sqlParam) {
+	public List<LostAndFoundVO> selectLostAndFound(LostAndFoundVO lostItem) {
 		List<LostAndFoundVO> showlist = new ArrayList<>();
 		String sql = null;
-		switch (target) {
-		case "all": {
+		System.out.println("lost.getLibrary_id()"+lostItem.getLibrary_id());
+		if( lostItem.getLibrary_id()!= null && lostItem.getProperty_name()!= null) {
+			sql = "select * from lost_and_found where library_id ='" + lostItem.getLibrary_id() + "' and property_name LIKE '%" + lostItem.getProperty_name() + "%'";
+		} else if (lostItem.getLibrary_id()!= null) {
+			sql = "select * from lost_and_found where library_id ='" + lostItem.getLibrary_id() + "'";
+		} else if (lostItem.getProperty_name()!= null) {
+			sql = "select * from lost_and_found where property_name LIKE '%" + lostItem.getProperty_name() + "%'";
+		} else {
 			sql = "select * from lost_and_found";
-			break;
 		}
-		case "property_name": {
-			sql = "select * from lost_and_found where property_name LIKE '%" + sqlParam + "%'";
-			break;
+		/*
+		switch (target) {
+			case "all": {
+				sql = "select * from lost_and_found";
+				break;
+			}
+			case "property_name": {
+				sql = "select * from lost_and_found where property_name LIKE '%" + sqlParam + "%'";
+				break;
+			}
+			case "library_id": {
+				sql = "select * from lost_and_found where library_id ='" + sqlParam + "'";
+				break;
+			}
+			case "library_id": {
+				sql = "select * from lost_and_found where library_id ='" + sqlParam + "' and property_name LIKE '%" + sqlParam + "%'";
+				break;
+			}
 		}
-		}
+		*/
 		conn = DBUtil.getConnection();
 
 		try {

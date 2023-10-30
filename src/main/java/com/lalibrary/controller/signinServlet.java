@@ -29,7 +29,7 @@ public class signinServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("user_id");
-		int userPassword = Integer.parseInt(request.getParameter("user_password"));
+		int userPassword = Integer.parseInt(request.getParameter("password"));
 
 		UserService userService = new UserService();
 		UserVO user = userService.signinCheck(userId, userPassword);

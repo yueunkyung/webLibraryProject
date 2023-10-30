@@ -30,7 +30,7 @@ public class BookDAO {
 					+ " where library_id = '"+libId+"'";
 		} else if(searchName != null) {
 			sql = "select * from books join lalibrary using(library_id)"
-					+ " WHERE book_name like '%" + searchName + "%'";
+					+ " where book_name like '%" + searchName + "%'";
 		}
 		conn = DBUtil.getConnection();
 		try {
@@ -47,6 +47,28 @@ public class BookDAO {
 		}
 		return booklist;
 	};
+	//user 대출 도서 조회
+	public List<BookVO> selectByBook(String userId){
+		List<BookVO> booklist = new ArrayList<>();
+		String sql = "select *"
+				+ " from books join BORROWED_BOOKS using(BORROW_ID)"
+				+ " join USERS using(USER_ID)"
+				+ " where user_id='"+userId+"'";
+		conn = DBUtil.getConnection();
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				BookVO book = makeBookList(rs);//reset에서 읽어서 VO만들기
+				booklist.add(book);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisConnection(conn, st, rs);
+		}
+		return booklist;
+	}
 
 	//인기 도서 조회
 	public List<BookVO> selectPopularBook(int rank){

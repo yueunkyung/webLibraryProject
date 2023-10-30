@@ -61,14 +61,16 @@ public class UserDAO {
 	//회원 가입
 	public int insertSignUp(UserVO memberInfo) {
 		int count = 0;
-		String sql = "{call add_new_user(?, ?, ?, ?)}";
+		String sql = "{call add_new_user(?, ?, ?, ?, ?, ?)}";
 		conn = DBUtil.getConnection();
 		try {
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, memberInfo.getLibrary_id());
-			pst.setString(2, memberInfo.getUser_name());
-			pst.setString(3, memberInfo.getLoc());
-			pst.setString(4, memberInfo.getPhone_no());
+			pst.setString(1, memberInfo.getUser_id());
+			pst.setString(2, memberInfo.getLibrary_id());
+			pst.setString(3, memberInfo.getUser_name());
+			pst.setString(4, memberInfo.getLoc());
+			pst.setString(5, memberInfo.getPhone_no());
+			pst.setInt(6, memberInfo.getPassword());
 			
 			count = pst.executeUpdate();
 		} catch (SQLException e) {
@@ -111,6 +113,7 @@ public class UserDAO {
 		user.setJoin_date(rs.getString(4));
 		user.setLoc(rs.getString(5));
 		user.setPhone_no(rs.getString(6));
+		user.setPassword(rs.getInt(7));
 		
 		return user;
 	}

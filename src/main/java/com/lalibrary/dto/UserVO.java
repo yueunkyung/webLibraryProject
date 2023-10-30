@@ -20,10 +20,12 @@ public class UserVO {
 	private int password;	//비밀번호
 	
 	//회원 가입
-	public UserVO(String library_id, String user_name, String loc, String phone_no) {
+	public UserVO(String user_id, String library_id, String user_name, String loc, String phone_no, int password) {
 		super();
-		this.library_id = library_id;
+		this.user_id = user_id;
+		this.password = password;
 		this.user_name = user_name;
+		this.library_id = library_id;
 		this.loc = loc;
 		this.phone_no = phone_no;
 	}

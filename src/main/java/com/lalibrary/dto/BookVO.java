@@ -49,6 +49,14 @@ public class BookVO {
 		this.borrow_status = borrow_status;
 		this.borrow_count = borrow_count;
 	}
+	
+	//도서전체 검색
+	public BookVO(String library_id, String book_name, int book_type) {
+		super();
+		this.book_name = book_name;
+		this.book_type = book_type;
+		this.library_id = library_id;
+	}
 
 	//도서 대여
 	public BookVO(String book_id, String user_id) {
