@@ -13,7 +13,7 @@ import com.lalibrary.dto.UserVO;
 import com.lalibrary.model.UserService;
 
 @WebServlet("/signinCheck.go")
-public class signinServlet extends HttpServlet {
+public class SigninServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -17,17 +17,17 @@ import com.lalibrary.model.BookService;
 import com.lalibrary.model.LibraryService;
 
 @WebServlet("/auth/mypage.go")
-public class mypageServlet extends HttpServlet {
+public class MypageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		BookService bookService = new BookService();
 		LibraryService libraryService = new LibraryService();
-		HttpSession session = request.getSession();
 		UserVO loginInfo = (UserVO)session.getAttribute("userInfo");
 		List<BookVO> bookList = bookService.selectByBook(loginInfo.getUser_id());
 		
-		System.out.println("bookList"+bookList.size() );
+		//System.out.println("bookList"+bookList.size() );
 		
 		for(LibraryVO library: libraryService.selectLibraryAll()) {
 			if( library.getLibrary_id().equals((String)loginInfo.getLibrary_id())) {

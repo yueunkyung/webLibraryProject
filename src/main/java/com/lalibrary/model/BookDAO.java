@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lalibrary.dto.BookVO;
-import com.lalibrary.dto.LibraryVO;
 import com.lalibrary.util.DBUtil;
 
 public class BookDAO {
@@ -47,6 +46,7 @@ public class BookDAO {
 		}
 		return booklist;
 	};
+	
 	//user 대출 도서 조회
 	public List<BookVO> selectByBook(String userId){
 		List<BookVO> booklist = new ArrayList<>();
@@ -139,10 +139,6 @@ public class BookDAO {
 		return count;		
 	}
 	
-	
-
-
-	
 	//도서-BookVO
 	private BookVO makeBookList(ResultSet rs) throws SQLException {
 		BookVO book = new BookVO();
@@ -161,18 +157,6 @@ public class BookDAO {
 		
 		return book;
 	}
-
-	//도서관-LibraryVO
-	private LibraryVO makeLalibraryList(ResultSet rs) throws SQLException{
-		LibraryVO libr = new LibraryVO();
-		libr.setLibrary_id(rs.getString(1));
-		libr.setLibrary_name(rs.getString(2));
-		libr.setLoc(rs.getString(3));
-		libr.setMember_count(rs.getInt(4));
-		
-		return libr;
-	}
-
 }
 
 	

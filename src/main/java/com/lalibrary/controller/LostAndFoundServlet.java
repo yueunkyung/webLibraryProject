@@ -13,7 +13,7 @@ import com.lalibrary.model.LibraryService;
 import com.lalibrary.model.LostAndFoundService;
 
 @WebServlet("/lostAndFound/lostAndFound.go")
-public class lostAndFoundServlet extends HttpServlet {
+public class LostAndFoundServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,6 +23,7 @@ public class lostAndFoundServlet extends HttpServlet {
 		String libId = request.getParameter("library_id");
 		String propertyName = request.getParameter("property_name");
 
+		//빈 값 null 처리
 		if(libId=="") libId = null;
 		if(propertyName=="") propertyName = null;
 

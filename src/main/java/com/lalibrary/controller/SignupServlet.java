@@ -14,10 +14,10 @@ import com.lalibrary.model.LibraryService;
 import com.lalibrary.model.UserService;
 
 @WebServlet("/auth/signup.go")
-public class signupServlet extends HttpServlet {
+public class SignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public signupServlet() {
+    public SignupServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
