@@ -14,6 +14,11 @@
 			$(this).children("a").removeClass("on");
 		});
 		
+		//수정 버튼 클릭시
+		document.querySelector(".btn_update").onclick = function() {
+			//history.back();
+			location.href = "userUpdate.go";
+		};
 	} //End
 </script>
 </head>
@@ -22,7 +27,7 @@
 	<div id="wrap" class="bg_dark">
 		<%@include file="../views/header.jsp" %>
 		<!-- .mypage_container -->
-		<section class="mypage_container">
+		<section class="userinfo_container">
 			<div class="btn_wrap">
 				<button class="btn_update">개인정보 수정</button>
 			</div>

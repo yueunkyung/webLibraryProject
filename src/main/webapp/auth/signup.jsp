@@ -23,8 +23,8 @@ function call() {
 	
 	//취소 버튼 클릭시
 	document.querySelector(".btn_cancel").onclick = function() {
-		//history.back();
-		location.href = "../signinCheck.go";
+		history.back();
+		//location.href = "../signinCheck.go";
 	};
 
 	let message = "${signupResult}";

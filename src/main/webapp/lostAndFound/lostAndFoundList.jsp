@@ -51,6 +51,8 @@
 	<!-- #wrap -->
 	<div id="wrap" class="bg_dark">
 		<%@include file="../views/header.jsp" %>
+		<section class="list_banner lostlist_banner dis_center">
+		</section>
 		<!-- .booklist_container -->
 		<section class="lost_container">
 			<div class="search_box">

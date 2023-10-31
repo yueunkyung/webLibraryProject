@@ -9,7 +9,7 @@
 			<c:when test="${userInfo!=null}">
 				<p class="welcome_msg">${userInfo.user_name}님 환영합니다😊</p>
 				<ul class="util_wrap">
-					<li><a href="${appPath}/auth/mypage.go">마이페이지</a></li>
+					<li><a href="${appPath}/auth/mypage.go?userid=${userInfo.user_id}">마이페이지</a></li>
 					<li><a href="${appPath}/auth/signout.go">SignOut</a></li>
 				</ul>
 			</c:when>

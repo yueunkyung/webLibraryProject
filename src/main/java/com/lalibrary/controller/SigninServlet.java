@@ -36,13 +36,13 @@ public class SigninServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
+		session.setAttribute("signinResult", "");
 		if(user==null) {
 			session.setAttribute("signinResult", "아이디와 비밀번호를 확인바랍니다.");
 			response.sendRedirect("signinCheck.go");
 			return;
 		}
 		
-		session.setAttribute("signinResult", "");
 		session.setAttribute("userInfo", user);
 		
 		response.sendRedirect("book/bookList.go");

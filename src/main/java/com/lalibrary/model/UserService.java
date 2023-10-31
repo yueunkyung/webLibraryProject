@@ -12,6 +12,11 @@ public class UserService {
 		return dao.selectUser(target, sqlParam);
 	}
 
+	//회원정보수정
+	public int userUpdate(UserVO user) {
+		return dao.userUpdate(user);		
+	}
+	
 	// 회원 가입
 	public int insertSignUp(UserVO memberInfo) {
 		return dao.insertSignUp(memberInfo);

@@ -65,14 +65,15 @@
 	<%-- #wrap --%>
 	<div id="wrap" class="bg_dark">
 		<%@include file="../views/header.jsp" %>
-		<section class="booklist_banner dis_center"></section>
+		<section class="list_banner booklist_banner dis_center">
+		</section>
 		<!-- .booklist_container -->
 		<section class="booklist_container">
 			<div class="search_box">
 				<div class="search_set">
 					<span>도서관 선택</span>
 					<select id="library_id">
-						<option value="" selected disabled hidden>전체</option>
+						<option value="">전체</option>
 						<c:forEach items="${librarylist}" var="library">
 							<option value="${library.library_id}" ${library.library_id.equals(param.library_id)?"selected" : ""}>${library.library_name}</option>
 						</c:forEach>

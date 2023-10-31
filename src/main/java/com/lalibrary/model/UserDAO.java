@@ -57,6 +57,37 @@ public class UserDAO {
 		
 		return showuser;
 	}
+	
+	//회원정보수정
+	public int userUpdate(UserVO user) {
+		int result = 0;
+		String sql = "update users"
+				+ "	set library_id=?,"
+				+ "		user_name=?,"
+				+ "		loc=?,"
+				+ "		phone_no=?,"
+				+ "		password=?"
+				+ "	where user_id=?";
+		conn = DBUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, user.getLibrary_id());
+			pst.setString(2, user.getUser_name());
+			pst.setString(3, user.getLoc());
+			pst.setString(4, user.getPhone_no());
+			pst.setInt(5, user.getPassword());
+			pst.setString(6, user.getUser_id());
+			
+			result = pst.executeUpdate();
+			 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	finally {
+			DBUtil.dbDisConnection(conn, st, rs);
+		}	
+		return result;
+	}
 
 	//회원 가입
 	public int insertSignUp(UserVO memberInfo) {

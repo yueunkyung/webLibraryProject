@@ -23,7 +23,8 @@ public class BookListServlet extends HttpServlet {
 
 		if(libId=="") libId = null;
 		if(bookTitle=="") bookTitle = null;
-		
+		System.out.println("?????111"+libId);
+		System.out.println("?????122221"+bookTitle);
 		request.setAttribute("booklist", bookService.selectByBook(libId, bookTitle));
 		
 		request.setAttribute("librarylist", libraryService.selectLibraryAll());
