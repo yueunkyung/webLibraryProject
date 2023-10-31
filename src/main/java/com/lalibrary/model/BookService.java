@@ -17,6 +17,11 @@ public class BookService {
 		return dao.selectByBook(userId);
 	}
 
+	//도서 상세 정보
+	public BookVO selectDetailBook(String bookId){
+		return dao.selectDetailBook(bookId);
+	}
+
 	// 도서 주문
 	public int insertOrderBook(BookVO book) {
 		return dao.insertOrderBook(book);

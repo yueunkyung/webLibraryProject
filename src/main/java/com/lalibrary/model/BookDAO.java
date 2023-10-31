@@ -50,16 +50,24 @@ public class BookDAO {
 	//user 대출 도서 조회
 	public List<BookVO> selectByBook(String userId){
 		List<BookVO> booklist = new ArrayList<>();
-		String sql = "select *"
-				+ " from books join BORROWED_BOOKS using(BORROW_ID)"
-				+ " join USERS using(USER_ID)"
-				+ " where user_id='"+userId+"'";
+		String sql = "select"
+				+ "   books.book_name"
+				+ "  ,lalibrary.library_name"
+				+ "  ,books.book_type"
+				+ " from users"
+				+ " join borrowed_books"
+				+ "  on users.user_id = borrowed_books.user_id"
+				+ " join books"
+				+ "  on borrowed_books.book_id = books.book_id"
+				+ " join lalibrary"
+				+ "  on books.library_id = lalibrary.library_id"
+				+ " where users.user_id = '"+userId+"'";
 		conn = DBUtil.getConnection();
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
-				BookVO book = makeBookList(rs);//reset에서 읽어서 VO만들기
+				BookVO book = makeBorrowedBookList(rs);//reset에서 읽어서 VO만들기
 				booklist.add(book);
 			}
 		} catch (SQLException e) {
@@ -70,6 +78,33 @@ public class BookDAO {
 		return booklist;
 	}
 
+	//도서 상세 정보
+	public BookVO selectDetailBook(String bookId){
+		BookVO book = null;
+		String sql = "select books.book_name, books.book_id, books.book_type, LALIBRARY.library_name ,books.borrow_status, borrowed_books.return_date"
+				+ " from users"
+				+ " join borrowed_books"
+				+ "  on users.user_id = borrowed_books.user_id"
+				+ " join books"
+				+ "  on borrowed_books.book_id = books.book_id"
+				+ " join lalibrary"
+				+ "  on books.library_id = lalibrary.library_id"
+				+ " where books.book_id = '"+bookId+"'";
+		conn = DBUtil.getConnection();
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				book = makeBookDetail(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisConnection(conn, st, rs);
+		}
+		return book;
+	}
+	
 	//인기 도서 조회
 	public List<BookVO> selectPopularBook(int rank){
 		List<BookVO> bestlist = new ArrayList<>();
@@ -139,21 +174,50 @@ public class BookDAO {
 		return count;		
 	}
 	
-	//도서-BookVO
+	//BookVO
 	private BookVO makeBookList(ResultSet rs) throws SQLException {
 		BookVO book = new BookVO();
-		book.setBook_id( rs.getString(1));
-		book.setLibrary_id(rs.getString(2));
-		book.setBorrow_id(rs.getString(3));
-		book.setBook_type(rs.getInt(4));
-		book.setBook_name(rs.getString(5));
-		book.setPrice(rs.getInt(6));
-		book.setBuy_date(rs.getString(7));
-		book.setBorrow_status (rs.getString(8));
-		book.setBorrow_count (rs.getInt(9));
-		book.setLibrary_name (rs.getString(10));
-		book.setLoc (rs.getString(11));
-		book.setMember_count (rs.getInt(12));
+		int index = 0;		
+
+		book.setLibrary_id(rs.getString(++index));
+		book.setBook_id( rs.getString(++index));
+		book.setBorrow_id(rs.getString(++index));
+		book.setBook_type(rs.getInt(++index));
+		book.setBook_name(rs.getString(++index));
+		book.setPrice(rs.getInt(++index));
+		book.setBuy_date(rs.getString(++index));
+		book.setBorrow_status (rs.getString(++index));
+		book.setBorrow_count (rs.getInt(++index));
+		book.setLibrary_name (rs.getString(++index));
+		book.setLoc (rs.getString(++index));
+		book.setMember_count (rs.getInt(++index));
+		
+		return book;
+	}
+	
+	//BookVO(user 대출 도서 조회)
+	private BookVO makeBorrowedBookList(ResultSet rs) throws SQLException {
+		BookVO book = new BookVO();
+		int index = 0;
+		
+		book.setBook_name( rs.getString(++index));
+		book.setLibrary_name(rs.getString(++index));
+		book.setBook_type(rs.getInt(++index));
+		
+		return book;
+	}
+	
+	//BookVO(도서 상세 정보)
+	private BookVO makeBookDetail(ResultSet rs) throws SQLException {
+		BookVO book = new BookVO();
+		int index = 0;
+		
+		book.setBook_name( rs.getString(++index));
+		book.setBook_id(rs.getString(++index));
+		book.setBook_type(rs.getInt(++index));
+		book.setLibrary_name(rs.getString(++index));
+		book.setBorrow_status(rs.getString(++index));
+		book.setReturn_date(rs.getDate(++index));
 		
 		return book;
 	}

@@ -4,9 +4,9 @@
 
 <%@include file="../views/commonImport.jsp" %>
 <script>
-	window.onload = call;
-
+	//window.onload = call;
 	function call() {
+		<%--
 		$("#gnb_wrap>li").on("mouseover focusin", function() {
 			$(this).children().stop().fadeIn(500);
 			$(this).children("a").addClass("on");
@@ -15,6 +15,7 @@
 			$(this).children("div").stop().fadeOut(500);
 			$(this).children("a").removeClass("on");
 		});
+		--%>
 		$(".btn_search").click(function() {
 			console.log("---both--", $("#library_id").val());
 			if($("#library_id").val() && $("#book_name").val() ) {
@@ -48,6 +49,16 @@
 		$(".btn_reset").reset(".search_box")
 		*/
 		
+		//도서대출신청 버튼 클릭시
+		/*
+		const buttons = document.querySelectorAll(".btn_borrow")
+		for (const button of buttons) {
+		  button.addEventListener('click', function(event) {
+			location.href = "bookDetail.go?";
+		  })
+		}
+		*/
+		
 		//새로고침
 		window.onkeyup = function(e) {
 			key = (e)?e.keyCode:event.keyCode;
@@ -58,6 +69,10 @@
 		};
 		
 	} //End
+		
+	function bookBorrow(book_id){
+		location.href = "${appPath}/book/bookBorrow.go?book_id="+book_id; 
+	}
 </script>
 </head>
 
@@ -111,7 +126,9 @@
 						<c:forEach items="${booklist}" var="book" varStatus="bookStatus">
 							<tr seq="${bookStatus.count}">
 								<td>${bookStatus.count}</td>
-								<td class="txt_left">${book.book_name}</td>
+								<td class="txt_left">
+									<a href="${appPath}/book/bookDetail.go?book_id=${book.book_id}">${book.book_name}</a>
+								</td>
 								<td>${book.library_name}</td>
 								<td>${book.book_type}</td>
 								<td>
@@ -120,7 +137,7 @@
 											<button class="btn_borrow" disabled>도서 대출중</button>
 										</c:when>
 										<c:otherwise>
-											<button class="btn_borrow">도서 대출 신청</button>
+											<button class="btn_borrow" onclick="bookBorrow('${book.book_id}');">도서 대출 신청</button>
 										</c:otherwise>
 									</c:choose>
 								</td>

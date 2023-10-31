@@ -1,5 +1,7 @@
 package com.lalibrary.dto;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,7 @@ public class BookVO {
 	private String library_name; //도서관 이름
 	private String loc; //지역
 	private int member_count; //회원수
+	private Date return_date; //책 반납일
 	
 	
 	//도서 주문

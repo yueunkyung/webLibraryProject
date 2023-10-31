@@ -1,5 +1,5 @@
-window.onload = call;
-function call(){
+window.onload = call111;
+function call111(){
 	$("#gnb_wrap>li").on("mouseover focusin", function() {
 		$(this).children().stop().fadeIn(500);
 		$(this).children("a").addClass("on");
@@ -8,4 +8,6 @@ function call(){
 		$(this).children("div").stop().fadeOut(500);
 		$(this).children("a").removeClass("on");
 	});
+	
+	call();
 }

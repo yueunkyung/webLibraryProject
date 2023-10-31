@@ -82,7 +82,7 @@
 							<tr seq="${bookStatus.count}">
 								<td>${bookStatus.count}</td>
 								<td class="txt_left">${book.book_name}</td>
-								<td>${book}</td>
+								<td>${book.library_name}</td>
 								<td>${book.book_type}</td>
 							</tr>
 						</c:forEach>
