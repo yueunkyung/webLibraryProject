@@ -162,17 +162,17 @@ html, body {
 }
 
 /* error */
-.error_container {
+.error_wrap {
 	display: flex;
 	height: 100%;
 	flex-direction: column;
 	justify-content: center;
 	align-items:center;
 }
-.error_container .img_wrap {
+.error_wrap .img_wrap {
 	width: 400px;
 }
-.error_container .img_wrap img{
+.error_wrap .img_wrap img{
 	display: block;
 	width: 100%;
 }
