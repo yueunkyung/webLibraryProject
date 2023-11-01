@@ -52,6 +52,7 @@ public class BookDAO {
 		List<BookVO> booklist = new ArrayList<>();
 		String sql = "select"
 				+ "   books.book_name"
+				+ "  ,books.book_id"
 				+ "  ,lalibrary.library_name"
 				+ "  ,books.book_type"
 				+ " from users"
@@ -81,14 +82,14 @@ public class BookDAO {
 	//도서 상세 정보
 	public BookVO selectDetailBook(String bookId){
 		BookVO book = null;
-		String sql = "select books.book_name, books.book_id, books.book_type, LALIBRARY.library_name ,books.borrow_status, borrowed_books.return_date"
-				+ " from users"
-				+ " join borrowed_books"
-				+ "  on users.user_id = borrowed_books.user_id"
-				+ " join books"
-				+ "  on borrowed_books.book_id = books.book_id"
-				+ " join lalibrary"
-				+ "  on books.library_id = lalibrary.library_id"
+		String sql = "select books.book_name"
+				+ ", books.book_id"
+				+ ", books.book_type"
+				+ ", LALIBRARY.library_name"
+				+ ", books.borrow_status"
+				+ ", borrowed_books.return_date"
+				+ " from books join lalibrary on books.library_id = lalibrary.library_id"
+				+ "            left outer join borrowed_books on books.book_id = borrowed_books.book_id"
 				+ " where books.book_id = '"+bookId+"'";
 		conn = DBUtil.getConnection();
 		try {
@@ -201,6 +202,7 @@ public class BookDAO {
 		int index = 0;
 		
 		book.setBook_name( rs.getString(++index));
+		book.setBook_id( rs.getString(++index));
 		book.setLibrary_name(rs.getString(++index));
 		book.setBook_type(rs.getInt(++index));
 		
