@@ -7,7 +7,7 @@
 	<div id="wrap" class="bg_dark">
 		<%@include file="../views/header.jsp" %>
 		<!-- .bookborrow_container -->
-		bookborrow_containerbookborrow_containerbookborrow_containerbookborrow_container
+		<h1 style="font-size: 100px; background:#fff;">bookborrow_container 미완성으로<br>뒤로가기 눌러주세요...</h1>
 		<section class="bookborrow_container">
 			<div class="btn_wrap">
 				<button class="btn_update">개인정보 수정</button>

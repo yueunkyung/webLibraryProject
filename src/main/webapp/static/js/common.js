@@ -9,5 +9,5 @@ function call111(){
 		$(this).children("a").removeClass("on");
 	});
 	
-	call();
+	//call();
 }

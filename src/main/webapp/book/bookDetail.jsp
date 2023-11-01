@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../views/commonImport.jsp" %>
-<script>
-function bookBorrow(book_id){
-	location.href = "${appPath}/book/bookBorrow.go?book_id="+book_id; 
-}
-</script>
 </head>
 <body>
 	<!-- #wrap -->
@@ -44,6 +39,7 @@ function bookBorrow(book_id){
 									도서 대출 가능
 								</c:otherwise>
 							</c:choose>
+							
 						</div>
 					</div>
 					<div class="info_set">
@@ -51,8 +47,14 @@ function bookBorrow(book_id){
 						<div>${bookDetailInfo.return_date}</div>
 					</div>
 					<div class="btn_wrap">
-						<button class="btn_borrow" onclick="bookBorrow('${bookDetailInfo.book_id}');">도서 대출 신청</button>
-						
+						<c:choose>
+							<c:when test="${bookDetailInfo.borrow_status=='Y'}">
+								<button class="btn_borrow" disabled>도서 대출중</button>
+							</c:when>
+							<c:otherwise>
+								<button class="btn_borrow" onclick="location.href='${appPath}/book/bookBorrow.go?book_id=${bookDetailInfo.book_id}';">도서 대출 신청</button>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</section>

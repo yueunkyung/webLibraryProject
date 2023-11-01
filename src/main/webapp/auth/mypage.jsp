@@ -81,7 +81,9 @@
 						<c:forEach items="${booklist}" var="book" varStatus="bookStatus">
 							<tr seq="${bookStatus.count}">
 								<td>${bookStatus.count}</td>
-								<td class="txt_left">${book.book_name}</td>
+								<td class="txt_left">
+									<a href="${appPath}/book/bookDetail.go?book_id=${book.book_id}">${book.book_name}</a>
+								</td>
 								<td>${book.library_name}</td>
 								<td>${book.book_type}</td>
 							</tr>

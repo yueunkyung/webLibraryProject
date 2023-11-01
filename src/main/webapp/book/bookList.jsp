@@ -4,9 +4,8 @@
 
 <%@include file="../views/commonImport.jsp" %>
 <script>
-	//window.onload = call;
+	window.onload = call;
 	function call() {
-		<%--
 		$("#gnb_wrap>li").on("mouseover focusin", function() {
 			$(this).children().stop().fadeIn(500);
 			$(this).children("a").addClass("on");
@@ -15,12 +14,7 @@
 			$(this).children("div").stop().fadeOut(500);
 			$(this).children("a").removeClass("on");
 		});
-		--%>
 		$(".btn_search").click(function() {
-			console.log("---both--", $("#library_id").val());
-			if($("#library_id").val() && $("#book_name").val() ) {
-				console.log("---");
-			}
 			location.href = "bookList.go?library_id=" + $("#library_id").val() + "&book_name=" + $("#book_name").val();
 		});
 		//엔터 Trigger
@@ -69,10 +63,6 @@
 		};
 		
 	} //End
-		
-	function bookBorrow(book_id){
-		location.href = "${appPath}/book/bookBorrow.go?book_id="+book_id; 
-	}
 </script>
 </head>
 
@@ -137,7 +127,7 @@
 											<button class="btn_borrow" disabled>도서 대출중</button>
 										</c:when>
 										<c:otherwise>
-											<button class="btn_borrow" onclick="bookBorrow('${book.book_id}');">도서 대출 신청</button>
+											<button class="btn_borrow" onclick="location.href='${appPath}/book/bookBorrow.go?book_id=${book.book_id}';">도서 대출 신청</button>
 										</c:otherwise>
 									</c:choose>
 								</td>

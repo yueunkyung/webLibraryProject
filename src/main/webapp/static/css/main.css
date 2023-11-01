@@ -353,6 +353,13 @@ section[class$="_container"] {
 .con_right .btn_wrap .btn_borrow:hover {
 	background-color: #ffc417;
 }
+.con_right .btn_wrap .btn_borrow:disabled,
+.con_right .btn_wrap .btn_borrow[disabled] {
+	background-color: transparent;
+    cursor: initial;
+    color: #ccc;
+    border: 1px solid #ccc;
+}
 .con_right .info_wrap .info_set div {
 	border: none;
     border-right: 1px solid #e8e8e8;
